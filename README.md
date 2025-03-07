@@ -28,6 +28,7 @@ Step 1: Upload the Script to MikroTik
 Method 1: Using Winbox
 Open Winbox and connect to your MikroTik router.
 Navigate to the Files section.
+
 Drag & drop mikrotik-hardening.rsc into the router’s storage.
 
 Method 2: Using SCP (Linux/macOS)
