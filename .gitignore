@@ -1,19 +1,33 @@
-# OS generated files
-.DS_Store
-Thumbs.db
+# RouterOS Backup Files (Sensitive Configs)
+*.backup
+*.rsc
+*.cfg
+*.bin
 
-# Editor temporary and backup files
-*~
+# Credentials & Security Keys
+secrets.txt
+*.pem
+*.crt
+*.key
+*.cert
+
+# Logs
+*.log
+logs/
+debug.log
+syslog.log
+
+# Compiled Scripts & Output Files
+*.compiled
+*.out
+
+# IDE & Editor Specific
+.vscode/
+.idea/
 *.swp
 *.swo
-*.bak
 
-# Log and temporary files
-*.log
+# Temporary & Cache Files
 *.tmp
-
-# Local environment files (if any)
-.env
-
-# Optional: directories for build or output artifacts
-dist/
+.cache/
+*.bak
