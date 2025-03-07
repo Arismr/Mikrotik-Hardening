@@ -1,1 +1,82 @@
+# MikroTik Router Security Hardening Documentation
 
+## Overview
+
+This project provides a MikroTik RouterOS security hardening script designed to secure your router by disabling insecure services, enforcing strong remote access and user management, applying robust firewall rules, and configuring logging. This documentation explains the purpose and function of each part of the script, as well as offering best practices for testing and deployment.
+
+## Script Explanation
+
+This section provides a breakdown of each part of the security hardening script.
+
+### 1. Logging the Current RouterOS Version
+- **Purpose:** Records the RouterOS version in the log.
+- **Details:** Helps you verify the firmware version and provides an audit trail.
+  
+### 2. Disabling Insecure Services
+- **Purpose:** Turns off services like Telnet, FTP, and HTTP.
+- **Details:** These services are considered insecure and can expose your router to attacks.
+
+### 3. Securing SSH Access
+- **Purpose:** Limits SSH access to a specific trusted IP and changes the default SSH port.
+- **Details:** Replaces `<trusted_ip>` and `<new_ssh_port>` with your specific values to reduce exposure to automated attacks.
+
+### 4. User Management
+- **Purpose:** Creates a new secure administrative user and optionally removes the default admin.
+- **Details:** Using strong passwords and unique usernames minimizes the risk of unauthorized access.
+
+### 5. Firewall Rules Configuration
+- **Subsection: Drop Invalid Packets**
+  - **Purpose:** Eliminates malformed or suspicious packets.
+- **Subsection: Allow Established/Related Connections**
+  - **Purpose:** Ensures that legitimate traffic continues without interruption.
+- **Subsection: Restrict Management Access**
+  - **Purpose:** Blocks access to critical ports (SSH, HTTPS, Winbox) from untrusted sources.
+  - **Details:** Replace the placeholder values with your trusted IP and designated port.
+
+### 6. Disabling or Restricting Winbox
+- **Purpose:** Either disable the Winbox service entirely or limit its access.
+- **Details:** This reduces potential attack vectors if you do not use Winbox or if you want to restrict its access.
+
+### 7. Configuring Logging
+- **Purpose:** Enables local logging of firewall events and, optionally, remote logging.
+- **Details:** Logging is essential for monitoring and troubleshooting. Configure a remote syslog server if needed by replacing `<syslog_server_ip>`.
+
+### 8. Final Confirmation
+- **Purpose:** Logs a final message indicating that the script has been applied successfully.
+- **Details:** Provides clear feedback that the script ran without errors.
+
+## Installation and Usage Instructions
+
+1. **Backup Your Configuration:**  
+   Always back up your current RouterOS configuration before applying any changes.
+
+2. **Access Your Router:**  
+   Log in to your MikroTik router via Winbox or SSH.
+
+3. **Apply the Script:**  
+   Copy the contents of `SECURITY_HARDENING_SCRIPT.rsc` (which contains only the script) into the MikroTik terminal and execute.
+
+4. **Verify Changes:**  
+   - Check the system logs to confirm the RouterOS version log and the final confirmation message.
+   - Test connectivity from both trusted and untrusted sources to ensure that firewall rules are working as intended.
+   - Review any logging outputs for additional troubleshooting.
+
+5. **Adjust Configuration:**  
+   Customize the script by replacing placeholder values (`<trusted_ip>`, `<new_ssh_port>`, `<syslog_server_ip>`, etc.) to match your environment.
+
+## Notes
+
+- **Separation of Concerns:**  
+  The script file (`SECURITY_HARDENING_SCRIPT.rsc`) is kept clean with only essential inline comments for readability. Detailed explanations, rationales, and configuration notes are provided in this documentation file.
+  
+- **Testing in a Lab Environment:**  
+  Before applying this script to a production router, test it in a controlled environment to ensure it doesn’t inadvertently block necessary traffic or access.
+
+- **Security Considerations:**  
+  - Always use strong, unique passwords.
+  - Regularly update your RouterOS firmware.
+  - Monitor logs continuously for any unusual activities.
+  - Keep a secure copy of your configuration and document any changes you make.
+
+- **Maintenance:**  
+  As new vulnerabilities are discovered or your network environment changes, periodically review and update your security hardening script and documentation.
