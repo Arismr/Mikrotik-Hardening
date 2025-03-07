@@ -97,6 +97,3 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Disclaimer
-
-Ensure you test the script in a controlled environment before deploying it to production. Use at your own risk.
