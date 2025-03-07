@@ -23,12 +23,61 @@ This project provides a security hardening script for MikroTik RouterOS. The scr
 - A trusted network configuration (replace `<trusted_ip>` in the script)
 
 ## Installation
+Step 1: Upload the Script to MikroTik
 
-1. Log in to your MikroTik router via Winbox or SSH.
-2. Backup your current configuration.
-3. Copy the contents of `SECURITY_HARDENING_SCRIPT.rsc` to your clipboard.
-4. Paste and execute the script in the MikroTik terminal.
-5. Verify the configuration changes and monitor logs for any issues.
+Method 1: Using Winbox
+Open Winbox and connect to your MikroTik router.
+Navigate to the Files section.
+Drag & drop mikrotik-hardening.rsc into the router’s storage.
+
+Method 2: Using SCP (Linux/macOS)
+Open a terminal on your computer.
+Run the following command to upload the script:
+
+scp mikrotik-hardening.rsc admin@192.168.1.1:/flash/
+
+Step 2: Run the Hardening Script
+
+Once the script is uploaded, execute it via terminal:
+
+/import mikrotik-hardening.rsc
+
+The script will automatically apply security enhancements to the router.
+
+Step 3: Verify Security Settings
+
+To ensure that the script was applied correctly, check the following:
+List disabled services:
+
+/ip service print
+
+Verify firewall rules:
+
+/ip firewall filter print
+
+Check logs for applied changes:
+
+/log print
+
+## Rollback Instructions
+
+If needed, a rollback script (rollback.rsc) is available to undo the changes.
+To Revert Changes:
+Upload rollback.rsc using Winbox or SCP.
+Execute the rollback script:
+
+/import rollback.rsc
+
+Verify that the original settings are restored.
+
+## Important Notes
+
+Backup Your Configuration: Always create a backup before applying security changes.
+
+/export file=backup
+
+Test in a Safe Environment: Apply the script on a test router before deploying it in production.
+Customize as Needed: Modify the script to suit your network's security policies.
 
 ## Usage
 
